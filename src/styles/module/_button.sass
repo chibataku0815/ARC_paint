@@ -1,0 +1,32 @@
+.button
+  &--right
+    text-align: right
+
+  &--left
+    text-align: left
+
+  &--center
+    text-align: center
+
+  &--big
+    height: 70px
+    padding: 10px 20px
+    line-height: 1.4
+    font-size: rem(22)
+    font-weight: bold
+    @media (max-width: $grid-tablet-breakpoint - 1)
+      font-size: rem(18)
+
+
+  &--small
+    background: unquote('rgba(#{$color-primary-light}, 1)')
+    font-size: rem(15)
+
+  &--cancel
+    background: unquote('rgba(#{$color-primary-light}, 1)')
+
+  &--more
+    height: 56px
+    padding: 0 20px
+    text-align: center
+    font-size: rem(30)

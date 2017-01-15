@@ -24,6 +24,7 @@ export default  {
 	 */
 	sass: {
 		src: './src/styles/**/*.{sass,scss}',
+		sourcemap: true,
 		dest: './',
 		sourceRoot: './src/styles'
 	},

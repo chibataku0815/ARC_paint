@@ -1,0 +1,18 @@
+.layout
+  &__container
+    width: 1100px
+    max-width: 100%
+    padding: 0
+    margin: 0 auto
+
+    &--center
+      text-align: center
+
+
+// _header.sass
+.header > .layout__container
+  +justify-content(space-between)
+
+// _breadcrumbs.sass
+.breadcrumbs > .layout__container
+  +display(flex)

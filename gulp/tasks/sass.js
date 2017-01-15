@@ -37,13 +37,9 @@ gulp.task('sass', function () {
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(bulkSass())
-		.pipe(sass())
+		.pipe(sass({outputStyle: 'compressed',sourcemap: true}))
 		.on('error', handleErrors)
 		.pipe(postcss(processors))
-		.pipe(sourcemaps.write({
-			includeContent: false,
-			sourceRoot: config.sass.sourceRoot
-		}))
-		.pipe( debug() )
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(config.sass.dest));
 });

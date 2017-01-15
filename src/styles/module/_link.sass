@@ -1,0 +1,46 @@
+.link
+
+  &--border
+    +transition(all .8s)
+    overflow: inherit
+    position: relative
+    display: inline-block
+    text-align: center
+    text-decoration: none
+    outline: none
+
+    &::before, &::after
+      position: absolute
+      z-index: 2
+      content: ''
+      width: 0
+      height: 0
+      border: 2px solid transparent
+
+    &::after
+      bottom: -2px
+
+    &:hover
+      color: unquote('rgba(#{$color-primary-light}, 1)')
+
+      &::before, &::after
+        @media (max-width: $grid-tablet-breakpoint - 1)
+          display: none
+        width: 100%
+        height: 100%
+
+      &::before
+        border-bottom-color: unquote('rgba(#{$color-primary-light}, 1)')
+        transition: width .2s
+
+  &--right
+    text-align: right
+
+  &--left
+    text-align: left
+
+  &--center
+    text-align: center
+
+  &__icon
+    font-size: rem(17)

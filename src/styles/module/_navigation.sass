@@ -1,0 +1,125 @@
+.navigation-container
+  order: 1
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+
+.navigation
+  width: 350px
+  height: inherit
+  justify-content: space-around
+
+
+$textColor: white
+$textColor2: #afb3b8
+$accentColor: #B24E51
+$borderColor: #5f656f
+$documentBgColor: #2f3238
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,600,700)
+.clearfix
+	&:before, &:after
+		content: ''
+		display: table
+	&:after
+		clear: both
+body
+	color: $textColor
+	background: $documentBgColor
+	font-weight: 400
+	font-size: 1em
+	font-family: 'Raleway', Arial, sans-serif
+figure
+	margin: 0
+	padding: 0
+a
+	color: $accentColor
+	text-decoration: none
+	&:hover, &:focus
+		color: $textColor2
+		outline: none
+.menu
+	+position(fixed, 3em null 3em 0)
+	width: 300px
+	z-index: 100
+	overflow: hidden
+	+transform(translateX(-150px))
+	+transition(transform 0.6s)
+	will-change: transform
+	.menu-trigger
+		background: $documentBgColor
+		border: none
+		width: 30px
+		height: 24px
+		padding: 0
+		outline: none
+		+position(absolute, 3px 70px null null)
+		z-index: 2000
+		&:before, span, &:after
+			background: $borderColor
+		span
+			+position(absolute, null null null 0)
+			width: 100%
+			height: 2px
+			overflow: hidden
+			text-indent: 200%
+			+transition(opacity 0.25s)
+			will-change: opacity
+		&:before, &:after
+			content: ''
+			+position(absolute, 50% null null 0)
+			height: 2px
+			width: 100%
+			+transform-origin(50% 50%)
+			+transition(transform 0.25s)
+			will-change: transform
+		&:before
+			transform: translateY(-10px)
+		&:after
+			transform: translateY(10px)
+	.menu-wrapper
+		width: calc(100% + 25px)
+		padding: 0 140px 2em 0
+		overflow-y: auto
+		height: 100%
+		position: relative
+		z-index: 100
+		ul
+			list-style: none
+			padding: 0
+			margin: 0
+			li
+				margin: 0 0 2em 0
+				+user-select
+				+transform(translateX(-150px))
+				+transition(transform 0.6s)
+				will-change: transform
+				&:first-child
+					+transition-delay(0.3s)
+				&:nth-child(2)
+					+transition-delay(0.2s)
+				&:nth-child(3)
+					+transition-delay(0.1s)
+				a
+					display: block
+					outline: none
+					text-align: center
+					.fa
+						font-size: 2.5em
+						display: block
+						margin: 0 auto
+						color: $borderColor
+					span
+						font:
+							weight: bold
+							size: 0.75em
+							family: Helvetica, Arial, sans-serif
+	&.anim .menu-wrapper ul li
+		+transform(translateX(0))
+	&.open
+		+transform(translateX(0))
+		.menu-trigger
+			span
+				opacity: 0
+			&:before
+				+transform(rotate3d(0, 0, 1, 45deg))
+			&:after
+				+transform(rotate3d(0, 0, 1, -45deg))

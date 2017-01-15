@@ -1,0 +1,15 @@
+.flex
+  +display(flex)
+
+  &--vertical-center
+    @extend .flex
+    +align-items(center)
+
+  &--side-left
+    @extend .flex
+    flex-flow: wrap
+    justify-content: flex-end
+
+  &--side-center
+    @extend .flex
+    justify-content: center
