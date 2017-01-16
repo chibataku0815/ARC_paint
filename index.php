@@ -10,7 +10,7 @@
 </header>
 <h1>Hello theme-env-sample</h1>
 
-<main id="content"></main>
+<Index id="content"></Index>
 
 
 <?php if(have_posts()): while(have_posts()):the_post();?>
