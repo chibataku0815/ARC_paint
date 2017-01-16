@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { stack as Menu } from 'react-burger-menu';
+import { Link } from 'react-router';
+import Radium from 'radium';
 
-class Hello extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {name: this.props.initialName};
-      }
+let RadiumLink = Radium(Link);
 
-      render() {
-        return <div>Hello {this.state.name}</div>;
-      }
-    }
-    Hello.defaultProps = {initialName: "Default Props"};
-
-
-    ReactDOM.render(
-      <Hello />,
-      document.getElementById('app')
+export default React.createClass({
+  render() {
+    return (
+      <Menu>
+        <RadiumLink className="menu-item" to="/home">Home</RadiumLink>
+        <RadiumLink className="menu-item" to="/settings">Settings</RadiumLink>
+        <RadiumLink className="menu-item" to="/blablabla">Blablabla</RadiumLink>
+      </Menu>
     );
+  }
+});
