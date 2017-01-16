@@ -1,2 +1,5 @@
 import $ from 'jquery';
-import './menu';
+
+$(function() {
+  $('h1').css('color', 'red');
+});

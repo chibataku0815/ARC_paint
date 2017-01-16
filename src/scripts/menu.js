@@ -1,3 +1,5 @@
+
+
 class Menu {
   constructor(el = '#menu', options = {}) {
     this.el = $(el);
