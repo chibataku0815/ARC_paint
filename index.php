@@ -6,6 +6,14 @@
 	<?php wp_head();?>
 </head>
 <body>
+<header>
+	<Menu pageWrapId={ "page-wrap" } />
+		<main id="page-wrap">
+		.
+		.
+		.
+		</main>
+</header>
 <h1>Hello theme-env-sample</h1>
 
 
@@ -14,6 +22,8 @@
 	<h1><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
 	<?php the_content();?>
 </article>
+
+<footer>フッター</footer>
 <?php endwhile; endif;?>
 
 <?php wp_footer();?>

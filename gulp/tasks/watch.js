@@ -27,4 +27,3 @@ gulp.task('watch', function () {
 		gulp.start('sass');
 	});
 });
-

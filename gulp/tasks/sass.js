@@ -38,12 +38,10 @@ gulp.task('sass', function () {
 		.pipe(sourcemaps.init())
 		.pipe(bulkSass())
 		.pipe(sass({outputStyle: 'compressed'}))
-		.on('error', handleErrors)
 		.pipe(postcss(processors))
-		.pipe(sourcemaps.write({
+		.pipe(sourcemaps.write('./',{
 			includeContent: false,
 			sourceRoot: config.sass.sourceRoot
 		}))
-		.pipe( debug() )
 		.pipe(gulp.dest(config.sass.dest));
 });
