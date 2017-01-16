@@ -7,12 +7,37 @@
 </head>
 <body>
 <header>
-	<Menu pageWrapId={ "page-wrap" } />
-		<main id="page-wrap">
-		.
-		.
-		.
-		</main>
+	<nav role="navigation" id="menu" class="menu">
+  <button class="menu-trigger"><span>Menu</span></button>
+  <div class="menu-wrapper">
+    <ul>
+      <li>
+        <a href="#">
+          <figure class="fa fa-fw fa-home"></figure>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <figure class="fa fa-fw fa-heart"></figure>
+          <span>Favs</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <figure class="fa fa-fw fa-folder"></figure>
+          <span>Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <figure class="fa fa-fw fa-tachometer"></figure>
+          <span>Stats</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
 </header>
 <h1>Hello theme-env-sample</h1>
 
