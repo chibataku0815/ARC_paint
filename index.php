@@ -10,7 +10,9 @@
 </header>
 <h1>Hello theme-env-sample</h1>
 
-<Index id="content"></Index>
+<div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+</div>
 
 
 <?php if(have_posts()): while(have_posts()):the_post();?>

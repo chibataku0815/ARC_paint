@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//コンポーネントを定義
-var Index = React.createClass({
-  render:function(){
-    return (
-        <p>hoge</p>
-    );
-  }
-});
+class Hello extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {name: this.props.initialName};
+      }
 
-//id='content'の要素にコンポーネント「Index」を挿入してレンダリング
-React.render(
-  <Index />,
-  document.getElementById('content')
-);
+      render() {
+        return <div>Hello {this.state.name}</div>;
+      }
+    }
+    Hello.defaultProps = {initialName: "Default Props"};
+
+
+    ReactDOM.render(
+      <Hello />,
+      document.getElementById('app')
+    );
