@@ -1,5 +1,17 @@
-import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-$(function() {
-  $('h1').css('color', 'red');
+//コンポーネントを定義
+var Index = React.createClass({
+  render:function(){
+    return (
+        <p>hoge</p>
+    );
+  }
 });
+
+//id='content'の要素にコンポーネント「Index」を挿入してレンダリング
+React.render(
+  <Index />,
+  document.getElementById('content')
+);
