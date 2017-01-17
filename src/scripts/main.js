@@ -1,1 +1,2 @@
-import 'menu';
+import $ from 'jquery';
+import './menu';
