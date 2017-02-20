@@ -1,78 +1,165 @@
-# Theme Development Environment Sample.
+# [Sage](https://roots.io/sage/)
+[![Packagist](https://img.shields.io/packagist/vpre/roots/sage.svg?style=flat-square)](https://packagist.org/packages/roots/sage)
+[![devDependency Status](https://img.shields.io/david/dev/roots/sage.svg?style=flat-square)](https://david-dm.org/roots/sage#info=devDependencies)
+[![Build Status](https://img.shields.io/travis/roots/sage.svg?style=flat-square)](https://travis-ci.org/roots/sage)
+[![Sponsored by ES6.io](https://img.shields.io/badge/%F0%9F%92%9A_Sponsored_by-ES6.io%20Tutorials-brightgreen.svg?style=flat-square)](https://roots.io/r/es6)
 
+Sage is a WordPress starter theme with a modern development workflow.
 
-[![Build Status](https://travis-ci.org/wckansai2016/theme-env-sample.svg?branch=master)](https://travis-ci.org/wckansai2016/theme-env-sample)
+**Sage 9 is in active development and is currently in beta. The `master` branch tracks Sage 9 development. If you want a stable version, use the [latest Sage 8 release](https://github.com/roots/sage/releases/latest).**
 
-テーマの開発環境のサンプルです。gulp を使って CSS / JS をビルドしたり、 [Travis CI](https://travis-ci.org/) を使って、それらの自動ビルド & コミットを実行してます。
+## Features
 
-## Directories and Files
+* Sass for stylesheets
+* ES6 for JavaScript
+* [Webpack](https://webpack.github.io/) for compiling assets, optimizing images, and concatenating and minifying files
+* [Browsersync](http://www.browsersync.io/) for synchronized browser testing
+* [Laravel's Blade](https://laravel.com/docs/5.3/blade) as a templating engine
+* CSS framework options:
+  * [Bootstrap 4](http://getbootstrap.com/)
+  * [Foundation](http://foundation.zurb.com/)
+  * None (blank slate)
+* Font Awesome (optional)
 
-* `bin` : travis 等から実行されるファイル等。
-* `gulp`: gulp の設定。
-* `gulpconfig.js`: gulp の設定を上書きします。`gulpconfig.js.sample` を参照のこと。
-* `gulpfile.babel.js` ただの gulpfile です。
-* `src` css/js 等のビルド前のファイル
-    * `styles/style.scss`: `style.css` にビルドされます。また、`styles` 内のSass/SCSSファイルは、テーマのルートへビルドされます。
-    * `scripts/main.js`: `bundle.js` へビルドされます。
+See a working example at [roots-example-project.com](https://roots-example-project.com/).
 
-## Get Started
+## Requirements
 
-Node.js 5 以上 で動作します。 4系の人はアップデートしてください。
+Make sure all dependencies have been installed before moving on:
 
+* [PHP](http://php.net/manual/en/install.php) >= 5.6.4
+* [Composer](https://getcomposer.org/download/)
+* [Node.js](http://nodejs.org/) >= 6.9.x
+* [Yarn](https://yarnpkg.com/en/docs/install)
+
+## Theme installation
+
+Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
+
+```shell
+# @ app/themes/ or wp-content/themes/
+$ composer create-project roots/sage your-theme-name dev-master
 ```
-$ npm install
-$ vi gulpconfig.js
-$ npm run gulp
+
+During theme installation you will have the options to:
+
+* Update theme headers (theme name, description, author, etc.)
+* Select a CSS framework (Bootstrap, Foundation, none)
+* Add Font Awesome
+* Configure Browsersync (path to theme, local development URL)
+
+## Theme structure
+
+```shell
+themes/your-theme-name/   # → Root of your Sage based theme
+├── assets                # → Front-end assets
+│   ├── config.json       # → Settings for compiled assets
+│   ├── build/            # → Webpack and ESLint config
+│   ├── fonts/            # → Theme fonts
+│   ├── images/           # → Theme images
+│   ├── scripts/          # → Theme JS
+│   └── styles/           # → Theme stylesheets
+├── composer.json         # → Autoloading for `src/` files
+├── composer.lock         # → Composer lock file (never edit)
+├── dist/                 # → Built theme assets (never edit)
+├── functions.php         # → Composer autoloader, theme includes
+├── index.php             # → Never manually edit
+├── node_modules/         # → Node.js packages (never edit)
+├── package.json          # → Node.js dependencies and scripts
+├── screenshot.png        # → Theme screenshot for WP admin
+├── src/                  # → Theme PHP
+│   ├── lib/Sage/         # → Blade implementation, asset manifest
+│   ├── admin.php         # → Theme customizer setup
+│   ├── filters.php       # → Theme filters
+│   ├── helpers.php       # → Helper functions
+│   └── setup.php         # → Theme setup
+├── style.css             # → Theme meta information
+├── templates/            # → Theme templates
+│   ├── layouts/          # → Base templates
+│   └── partials/         # → Partial templates
+└── vendor/               # → Composer packages (never edit)
 ```
 
+## Theme setup
 
-## Gulp Tasks
+Edit `src/setup.php` to enable or disable theme features, setup navigation menus, post thumbnail sizes, and sidebars.
 
-gulpを実行するには、
+## Theme development
 
+Sage uses [Webpack](https://webpack.github.io/) as a build tool and [npm](https://www.npmjs.com/) to manage front-end packages.
+
+### Install dependencies
+
+From the command line on your host machine (not on your Vagrant development box), navigate to the theme directory then run `yarn`:
+
+```shell
+# @ themes/your-theme-name/
+$ yarn
 ```
-$(npm bin)/gulp hoge
+
+You now have all the necessary dependencies to run the build process.
+
+### Build commands
+
+* `yarn run start` — Compile assets when file changes are made, start Browsersync session
+* `yarn run build` — Compile and optimize the files in your assets directory
+* `yarn run build:production` — Compile assets for production
+
+#### Additional commands
+
+* `yarn run rmdist` — Remove your `dist/` folder
+* `yarn run lint` — Run ESLint against your assets and build scripts
+* `composer test` — Check your PHP for PSR-2 compliance with `phpcs`
+
+### Using Browsersync
+
+To use Browsersync you need to update `devUrl` at the bottom of `assets/config.json` to reflect your local development hostname.
+
+If your local development URL is `https://project-name.dev`, update the file to read:
+```json
+...
+  "devUrl": "https://project-name.dev",
+...
 ```
 
-や
+If you are not using [Bedrock](https://roots.io/bedrock/), update `publicPath` to reflect your folder structure:
+
+```json
+...
+  "publicPath": "/wp-content/themes/sage"
+...
 ```
-$npm run gulp hoge
+
+By default, Browsersync will use webpack's [HMR](https://webpack.github.io/docs/hot-module-replacement.html), which won't trigger a page reload in your browser.
+
+If you would like to force Browsersync to reload the page whenever certain file types are edited, then add them to `watch` in `assets/config.json`.
+
+```json
+...
+  "watch": [
+    "assets/scripts/**/*.js",
+    "templates/**/*.php",
+    "src/**/*.php"
+  ],
+...
 ```
-等で実行できます。`npm install -g gulp-cli` しなくてもだいじょうぶ！
 
-### Tasks
+## Documentation
 
-* `gulp` or `gulp default` : BrowserSync でファイルの監視& `gulp build` を実行。
-* `gulp build` : CSS / JS のビルドを実行。
-* `gulp dist` : `./dist` に配布用のテーマを作成。
+Sage 8 documentation is available at [https://roots.io/sage/docs/](https://roots.io/sage/docs/).
 
-## Gulp Configuration
+Sage 9 documentation is currently in progress and can be viewed at [https://github.com/roots/docs/tree/sage-9/sage](https://github.com/roots/docs/tree/sage-9/sage).
 
-BrowserSync で ローカルサーバーが立ち上がりますが、node.js のサーバーでは、PHP が動作しないため、Xampp 、MAMP 、VCCW 、ビルトインサーバー等への Proxy の設定が必要です。
-`gulpconfig.js.sample` を参考に、`gulpconfig.js` を変更してください。
+## Contributing
 
+Contributions are welcome from everyone. We have [contributing guidelines](https://github.com/roots/guidelines/blob/master/CONTRIBUTING.md) to help you get started.
 
-## Build Settings.
+## Community
 
-### CSS
+Keep track of development and community news.
 
-基本は、gulp-sass していますが、[gulp-sass-bulk-import](https://github.com/mathisonian/gulp-sass-bulk-import), が突っ込んであるので、`sass-globbing` 的なことが出来ます。
-
-また、postcss で [autoprefixer](https://github.com/postcss/autoprefixer) と、[postcss-import](https://github.com/postcss/postcss-import) を突っ込んであります。
-
-### JS
-
-[Browserify](http://browserify.org/) でJSの依存管理、コンパイルなどを実行してます。(concatの順番とか管理するのつらい)
-また、jQuery と Underscore.js は WordPress で出力される場合があるので、グローバル変数のものを使用します。[browserify-shim](https://github.com/thlorenz/browserify-shim) 使ってます。
-
-ES6を使うようにしていますが、せいぜい import 周りを覚えれば普通の JS です。
-
-main.js をコンパイルするようにしています。なので、これに import するなり、記述するなりしてください。
-
-## Auto Build Theme.
-
-master ブランチへ push すると、travis-ci が `gulp dist` を実行し、配布用のテーマを dist ブランチへコミットします。
-
-テストは、`style.css` / `bundle.js` が存在するか、*.php のファイルに文法エラーが無いかを確認してます。
-
-[最新の配布用テーマのダウンロード](https://github.com/wckansai2016/theme-env-sample/archive/dist.zip)
+* Participate on the [Roots Discourse](https://discourse.roots.io/)
+* Follow [@rootswp on Twitter](https://twitter.com/rootswp)
+* Read and subscribe to the [Roots Blog](https://roots.io/blog/)
+* Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)
+* Listen to the [Roots Radio podcast](https://roots.io/podcast/)
